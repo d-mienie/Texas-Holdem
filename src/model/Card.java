@@ -1,3 +1,4 @@
+//Dante Mienie
 package model;
 
 public class Card implements Comparable<Card>{
