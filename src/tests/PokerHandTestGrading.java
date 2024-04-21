@@ -9,6 +9,8 @@ package tests;
 import static org.junit.Assert.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 
 import model.Card;
@@ -79,6 +81,16 @@ public class PokerHandTestGrading {
   private final static Card SK = new Card(Rank.KING, Suit.SPADES);
   private final static Card SA = new Card(Rank.ACE, Suit.SPADES);
   
+  @Test
+  public void showCollections() {
+	  ArrayList<Card> cards = new ArrayList<>();
+	  cards.add(S2);
+	  cards.add(S3);
+	  cards.add(S5);
+	  System.out.println(cards);
+	  
+	  
+  }
   @Test
   public void testThreeOfKindWhenEqual( ) {
     PokerHand a = new PokerHand(D5, C5, H5, H9, H8);
