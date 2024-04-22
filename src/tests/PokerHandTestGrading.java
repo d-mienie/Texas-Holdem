@@ -10,6 +10,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
@@ -83,14 +84,57 @@ public class PokerHandTestGrading {
   
   @Test
   public void showCollections() {
-	  ArrayList<Card> cards = new ArrayList<>();
-	  cards.add(S2);
-	  cards.add(S3);
-	  cards.add(S5);
-	  System.out.println(cards);
-	  
+	    ArrayList<Card> cards = new ArrayList<>();
+	    cards.add(SA);
+	    cards.add(S9);
+	    cards.add(S5);
+	    //System.out.println("Before sorting: " + cards);
+	    // Sort the cards list
+	    Collections.sort( cards);
+	    //System.out.println("After sorting: " + cards);
+	   // System.out.println("max: " + Collections.max(cards));
+	    
+	    
 	  
   }
+	  @Test
+	  public void test21handsSorted() {
+	     Card c1 = C5;
+	     Card c2 = C10;
+	     Card c3 = CJ;
+	     Card c4 = D9;
+	     Card c5 = SQ;
+	     Card c6 = D8;
+	     Card c7 = D5;
+	     // Create 21 unique five-card PokerHands from the 7 cards above.   
+	     // I "renamed" the cards to c1 .. c7 for easier combinations. This is just a start
+	     PokerHand h1 = new PokerHand(c1, c2, c3, c4, c5);
+	     PokerHand h2 = new PokerHand(c1, c2, c3, c4, c6);
+	     PokerHand h3 = new PokerHand(c1, c2, c3, c4, c7);
+	     PokerHand h4 = new PokerHand(c1, c2, c3, c5, c6);
+	     PokerHand h5 = new PokerHand(c1, c2, c3, c5, c7);
+	     PokerHand h6 = new PokerHand(c1, c2, c3, c6, c7);
+	     
+	     PokerHand h7 = new PokerHand(c1, c2, c4, c5, c6);
+	     PokerHand h8 = new PokerHand(c1, c2, c4, c5, c7);
+	     PokerHand h9 = new PokerHand(c1, c2, c4, c6, c7);
+	     PokerHand h10 = new PokerHand(c1, c2, c5, c6, c7);
+	     PokerHand h11 = new PokerHand(c1, c3, c4, c5, c6);
+	     PokerHand h12 = new PokerHand(c1, c3, c4, c5, c7);
+	     
+	     PokerHand h13 = new PokerHand(c1, c3, c4, c6, c7);
+	     PokerHand h14 = new PokerHand(c1, c3, c5, c6, c7);
+	     PokerHand h15 = new PokerHand(c1, c4, c5, c6, c7);
+	     PokerHand h16 = new PokerHand(c2, c3, c4, c5, c6);
+	     PokerHand h17 = new PokerHand(c2, c3, c4, c5, c7);
+	     PokerHand h18 = new PokerHand(c2, c3, c4, c6, c7);
+	     
+	     PokerHand h19 = new PokerHand(c2, c3, c5, c6, c7);
+	     PokerHand h20 = new PokerHand(c2, c4, c5, c6, c7);
+	     PokerHand h21 = new PokerHand(c3, c4, c5, c6, c7);
+
+	  
+	  }  
   @Test
   public void testThreeOfKindWhenEqual( ) {
     PokerHand a = new PokerHand(D5, C5, H5, H9, H8);
@@ -194,6 +238,7 @@ public class PokerHandTestGrading {
     PokerHand straight2 = new PokerHand(CJ, C10, C9, C8, CQ);
     assertTrue(straight1.compareTo(straight2) < 0);
     assertTrue(straight2.compareTo(straight1) > 0);
+    
   }
 
   @Test
@@ -888,6 +933,8 @@ public class PokerHandTestGrading {
     PokerHand threeKind2 = new PokerHand(C2, S4, D4, H4, SA);
     PokerHand threeKindHigh = new PokerHand(CA, HA, SA, CK, CQ);
     assertTrue(threeKind2.compareTo(threeKindHigh) < 0);
+    
+    
 }
  
   // Add three random tests to get to 100 @Tests
