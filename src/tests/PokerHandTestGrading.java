@@ -496,6 +496,8 @@ public class PokerHandTestGrading {
     PokerHand nothing72 = new PokerHand(C2, C3, C4, C5, D7);
     PokerHand nothing73 = new PokerHand(D2, D4, D5, D6, C7);
     assertTrue(nothing73.compareTo(nothing72) > 0);
+
+    
   }
 
   @Test
@@ -693,6 +695,7 @@ public class PokerHandTestGrading {
     PokerHand fullHouse = new PokerHand(CA, DA, C3, D3, H3);
     PokerHand fullHouse2 = new PokerHand(C2, D2, C4, D4, H4);
     assertTrue(fullHouse2.compareTo(fullHouse) > 0);
+
   }
 
   @Test

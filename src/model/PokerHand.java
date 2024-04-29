@@ -1,3 +1,4 @@
+
 //Dante Mienie
 package model;
 
@@ -67,6 +68,7 @@ public class PokerHand implements Comparable<PokerHand> {
 				|| playerHand.get(1).getRank() == playerHand.get(2).getRank()
 						&& playerHand.get(2).getRank() == playerHand.get(3).getRank()
 						&& playerHand.get(3).getRank() == playerHand.get(4).getRank()) {
+			highestCard = playerHand.get(2).getValue();
 			return true;
 		}
 		return false;
@@ -112,12 +114,25 @@ public class PokerHand implements Comparable<PokerHand> {
 		return false;
 	}
 
+	// Pair
+	private boolean isPair(ArrayList<Card> playerHand) {
+		int pairCount = 0;
+		for (int i = 0; i < playerHand.size() - 1; i++) {
+			if (playerHand.get(i).getValue() == playerHand.get(i + 1).getValue()) {
+				pairCount++;
+				highestCard = playerHand.get(i).getValue();
+				i++;
+			}
+		}
+		return pairCount == 1;
+	}
+
 	// TwoPair
 	private boolean isTwoPair(ArrayList<Card> playerHand) {
 		int pairCount = 0;
 		int maxPairVal = 0;
 		for (int i = 0; i < playerHand.size() - 1; i++) {
-			if (playerHand.get(i).getValue() == (playerHand.get(i + 1).getValue())) {
+			if (playerHand.get(i).getValue() == playerHand.get(i + 1).getValue()) {
 				pairCount++;
 				if (playerHand.get(i).getValue() > maxPairVal) {
 					maxPairVal = playerHand.get(i).getValue();
@@ -125,20 +140,8 @@ public class PokerHand implements Comparable<PokerHand> {
 				i++;
 			}
 		}
+		highestCard = maxPairVal;
 		return pairCount == 2;
-	}
-
-	// Pair
-	private boolean isPair(ArrayList<Card> playerHand) {
-		int pairCount = 0;
-		for (int i = 0; i < playerHand.size() - 1; i++) {
-			if (playerHand.get(i).getValue() == (playerHand.get(i + 1).getValue())) {
-				pairCount++;
-				i++;
-				highestCard = playerHand.get(i).getValue();
-			}
-		}
-		return pairCount == 1;
 	}
 
 	public int getHandRank() {
@@ -169,8 +172,17 @@ public class PokerHand implements Comparable<PokerHand> {
 	}
 
 	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		for (Card card : playerHand) {
+			sb.append(card.toString()).append(" ");
+		}
+		sb.deleteCharAt(sb.length() - 1);
+		return sb.toString();
+	}
+
+	@Override
 	public int compareTo(PokerHand o) {
-		Collections.sort(o.playerHand);
 		if (this.getHandRank() > o.getHandRank()) {
 			return -1;
 		} else if (this.getHandRank() < o.getHandRank()) {
